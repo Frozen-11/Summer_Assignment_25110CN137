@@ -52,5 +52,5 @@ int main() {
     table();
     factorial();
     count();
-    return 0;
+return 0;
 }
