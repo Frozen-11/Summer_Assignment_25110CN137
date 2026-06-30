@@ -1,0 +1,134 @@
+//Write a program to Develop complete mini project using arrays, strings and functions.
+#include <iostream>
+#include <string>
+using namespace std;
+
+const int MAX = 100;
+
+string name[MAX];
+int roll[MAX];
+float marks[MAX];
+int totalStudents = 0;
+
+// Function to add student
+void addStudent()
+{
+    if(totalStudents == MAX)
+    {
+        cout << "Student limit reached!\n";
+        return;
+    }
+
+    cout << "\nEnter Roll Number: ";
+    cin >> roll[totalStudents];
+
+    cin.ignore();
+
+    cout << "Enter Name: ";
+    getline(cin, name[totalStudents]);
+
+    cout << "Enter Marks: ";
+    cin >> marks[totalStudents];
+
+    totalStudents++;
+
+    cout << "Student Added Successfully!\n";
+}
+
+// Function to display students
+void displayStudents()
+{
+    if(totalStudents == 0)
+    {
+        cout << "\nNo records found!\n";
+        return;
+    }
+
+    cout << "\n----- Student Records -----\n";
+
+    for(int i = 0; i < totalStudents; i++)
+    {
+        cout << "\nStudent " << i + 1 << endl;
+        cout << "Roll Number : " << roll[i] << endl;
+        cout << "Name        : " << name[i] << endl;
+        cout << "Marks       : " << marks[i] << endl;
+    }
+}
+
+// Function to search student
+void searchStudent()
+{
+    if(totalStudents == 0)
+    {
+        cout << "\nNo records available!\n";
+        return;
+    }
+
+    cin.ignore();
+
+    string searchName;
+
+    cout << "\nEnter Name to Search: ";
+    getline(cin, searchName);
+
+    bool found = false;
+
+    for(int i = 0; i < totalStudents; i++)
+    {
+        if(name[i] == searchName)
+        {
+            cout << "\nStudent Found!\n";
+            cout << "Roll Number : " << roll[i] << endl;
+            cout << "Name        : " << name[i] << endl;
+            cout << "Marks       : " << marks[i] << endl;
+
+            found = true;
+        }
+    }
+
+    if(!found)
+    {
+        cout << "Student Not Found!\n";
+    }
+}
+
+int main()
+{
+    int choice;
+
+    do
+    {
+        cout << "\n========== STUDENT MANAGEMENT SYSTEM ==========\n";
+        cout << "1. Add Student\n";
+        cout << "2. Display Students\n";
+        cout << "3. Search Student\n";
+        cout << "4. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch(choice)
+        {
+            case 1:
+                addStudent();
+                break;
+
+            case 2:
+                displayStudents();
+                break;
+
+            case 3:
+                searchStudent();
+                break;
+
+            case 4:
+                cout << "Thank You!\n";
+                break;
+
+            default:
+                cout << "Invalid Choice!\n";
+        }
+
+    } while(choice != 4);
+
+    return 0;
+}
